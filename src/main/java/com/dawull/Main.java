@@ -20,7 +20,6 @@ class App {
         Scanner scanner = new Scanner(System.in);
 
         int lastId = 0;
-        WiseSaying lastWiseSaying = null;
         WiseSaying[] wiseSayings = new WiseSaying[100];
         int wiseSayingsSize = 0;
 
@@ -40,7 +39,6 @@ class App {
                 //저장
                 WiseSaying wiseSaying = new WiseSaying(id, content, author);
 
-                lastWiseSaying = wiseSaying;
                 wiseSayings[wiseSayingsSize] = wiseSaying;
                 wiseSayingsSize++;
 
@@ -51,8 +49,14 @@ class App {
             } else if (cmd.equals("목록")) {
                 System.out.println(" 번호 / 작가 / 명언 ");
                 System.out.println("------------------------");
+                int i = 0;
                 try {
-                    System.out.println("%d / %s / %s".formatted(lastWiseSaying.id, lastWiseSaying.content, lastWiseSaying.author));
+                    while(i < wiseSayingsSize){
+                        WiseSaying wiseSaying = wiseSayings[i];
+                        System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.content, wiseSaying.author));
+                        i++;
+                    }
+
                 } catch (NullPointerException e) {
                     System.out.println("등록된 명언이 없습니다.");
                 }
