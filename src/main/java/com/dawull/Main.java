@@ -51,10 +51,9 @@ class App {
                 System.out.println("------------------------");
                 int i = 0;
                 try {
-                    while(i < wiseSayingsSize){
-                        WiseSaying wiseSaying = wiseSayings[i];
+                    for (WiseSaying wiseSaying : wiseSayings) {
+                        if (wiseSaying == null) break;
                         System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.content, wiseSaying.author));
-                        i++;
                     }
 
                 } catch (NullPointerException e) {
