@@ -1,5 +1,6 @@
 package com.dawull;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -20,6 +21,8 @@ class App {
 
         int lastId = 0;
         WiseSaying lastWiseSaying = null;
+        WiseSaying[] wiseSayings = new WiseSaying[100];
+        int wiseSayingsSize = 0;
 
         while (true) {
             System.out.print("명령) ");
@@ -38,12 +41,16 @@ class App {
                 WiseSaying wiseSaying = new WiseSaying(id, content, author);
 
                 lastWiseSaying = wiseSaying;
+                wiseSayings[wiseSayingsSize] = wiseSaying;
+                wiseSayingsSize++;
+
+                System.out.println(Arrays.toString(wiseSayings));
 
                 System.out.println("%d번 명령이 등록되었습니다.".formatted(id));
 
             } else if (cmd.equals("목록")) {
                 System.out.println(" 번호 / 작가 / 명언 ");
-                System.out.println("----------------------");
+                System.out.println("------------------------");
                 try {
                     System.out.println("%d / %s / %s".formatted(lastWiseSaying.id, lastWiseSaying.content, lastWiseSaying.author));
                 } catch (NullPointerException e) {
