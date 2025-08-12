@@ -1,5 +1,8 @@
 package com.dawull;
 
+import com.dawull.domain.wiseSaying.controller.WiseSayingController;
+import com.dawull.domain.wiseSaying.entity.WiseSaying;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,13 +12,14 @@ public class App {
     private final Scanner scanner;
     private int lastId;
     private final List<WiseSaying> wiseSayings;
-    private int wiseSayingsSize;
+    private WiseSayingController wiseSayingController;
 
     // 변수 초기화
     public App() {
         scanner = new Scanner(System.in);
         lastId = 0;
         wiseSayings = new ArrayList<>();
+        wiseSayingController = new WiseSayingController();
     }
 
     public void run() {
@@ -32,7 +36,7 @@ public class App {
             } else if (cmd.equals("등록")) {
                 actionAdd();
             } else if (cmd.equals("목록")) {
-                actionList();
+                wiseSayingController.actionList(wiseSayings);
             } else if (cmd.startsWith("삭제?id=")) {
                 String id = cmd.substring(6);
                 actionDelete(Integer.parseInt(id));
@@ -107,12 +111,5 @@ public class App {
 
     }
 
-    private void actionList() {
-        System.out.println(" 번호 / 작가 / 명언 ");
-        System.out.println("------------------------");
 
-        for (WiseSaying wiseSaying : wiseSayings.reversed()) {
-            System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
-        }
-    }
 }
