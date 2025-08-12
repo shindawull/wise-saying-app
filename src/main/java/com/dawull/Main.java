@@ -15,6 +15,7 @@ class App {
     int lastId;
     WiseSaying[] wiseSayings;
     int wiseSayingsSize;
+
     // 변수 초기화
     App() {
         scanner = new Scanner(System.in);
@@ -35,19 +36,7 @@ class App {
             } else if (cmd.equals("등록")) {
                 actionAdd();
             } else if (cmd.equals("목록")) {
-                System.out.println(" 번호 / 작가 / 명언 ");
-                System.out.println("------------------------");
-                int i = 0;
-                try {
-                    for (WiseSaying wiseSaying : wiseSayings) {
-                        if (wiseSaying == null) break;
-                        System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.content, wiseSaying.author));
-                    }
-                } catch (NullPointerException e) {
-                    System.out.println("등록된 명언이 없습니다.");
-                }
-            } else if (cmd.equals("등록")) {
-
+                actionList();
             } else if (cmd.startsWith("삭제")) {
 
             } else if (cmd.startsWith("수정")) {
@@ -73,6 +62,20 @@ class App {
         //System.out.println(Arrays.toString(wiseSayings));
         System.out.println("%d번 명령이 등록되었습니다.".formatted(id));
 
+    }
+
+    void actionList() {
+        System.out.println(" 번호 / 작가 / 명언 ");
+        System.out.println("------------------------");
+        int i = 0;
+        try {
+            for (WiseSaying wiseSaying : wiseSayings) {
+                if (wiseSaying == null) break;
+                System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.content, wiseSaying.author));
+            }
+        } catch (NullPointerException e) {
+            System.out.println("등록된 명언이 없습니다.");
+        }
     }
 }
 
