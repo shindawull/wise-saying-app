@@ -37,11 +37,40 @@ public class App {
                 String id = cmd.substring(6);
                 actionDelete(Integer.parseInt(id));
             } else if (cmd.startsWith("수정?id=")) {
-
+                String id = cmd.substring(6);
+                actionModify(Integer.parseInt(id));
             }
         }
         scanner.close();
     }
+
+    private void actionModify(int id) {
+        WiseSaying foundWaseSaying = null;
+
+        for (WiseSaying wiseSaying : wiseSayings) {
+            if (wiseSaying.getId() == id) {
+                foundWaseSaying = wiseSaying;
+                break;
+            }
+        }
+
+        if (foundWaseSaying == null) {
+            System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
+            return;
+        }
+        System.out.println("명언(기존) : %s".formatted(foundWaseSaying.getContent()));
+        System.out.print("새로운 명언 : ");
+        String content = scanner.nextLine();
+
+        System.out.println("작사(기존) : %s".formatted(foundWaseSaying.getAuthor()));
+        System.out.print("새로운 작사 : ");
+        String author = scanner.nextLine();
+
+        foundWaseSaying.setContent(content);
+        foundWaseSaying.setAuthor(author);
+        System.out.println("%d번 명언이 수정되었습니다.".formatted(id));
+    }
+
 
     private void actionDelete(int id) {
         boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
@@ -82,17 +111,8 @@ public class App {
         System.out.println(" 번호 / 작가 / 명언 ");
         System.out.println("------------------------");
 
-        try {
-            int i = 0;
-            for (WiseSaying wiseSaying : wiseSayings.reversed()) {
-                System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
-            }
-            /*for (int i = wiseSayings.size() - 1; i >= 0; i--) {
-                WiseSaying wiseSaying = wiseSayings.get(i);
-                System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
-            }*/
-        } catch (NullPointerException e) {
-            System.out.println("등록된 명언이 없습니다.");
+        for (WiseSaying wiseSaying : wiseSayings.reversed()) {
+            System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
         }
     }
 }
