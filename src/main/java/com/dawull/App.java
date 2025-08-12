@@ -34,12 +34,17 @@ public class App {
             } else if (cmd.equals("목록")) {
                 actionList();
             } else if (cmd.startsWith("삭제")) {
-
+                actionDelete(1);
             } else if (cmd.startsWith("수정")) {
 
             }
         }
         scanner.close();
+    }
+
+    private void actionDelete(int id) {
+        boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
+        if(removed) System.out.println("%d번 명언을 삭제했습니다.".formatted(id));
     }
 
     private void makeSampleData() {
