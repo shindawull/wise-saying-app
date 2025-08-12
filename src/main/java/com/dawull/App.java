@@ -75,14 +75,14 @@ public class App {
         System.out.println("------------------------");
 
         try {
-            /*int i = 0;
-            for (WiseSaying wiseSaying : wiseSayings) {
-                System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
-            }*/
-            for (int i = wiseSayings.size() - 1; i >= 0; i--) {
-                WiseSaying wiseSaying = wiseSayings.get(i);
+            int i = 0;
+            for (WiseSaying wiseSaying : wiseSayings.reversed()) {
                 System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
             }
+            /*for (int i = wiseSayings.size() - 1; i >= 0; i--) {
+                WiseSaying wiseSaying = wiseSayings.get(i);
+                System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
+            }*/
         } catch (NullPointerException e) {
             System.out.println("등록된 명언이 없습니다.");
         }
