@@ -14,4 +14,11 @@ public class WiseSayingController {
                 System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
             }
         }
+
+    public void actionDelete(int id, List<WiseSaying> wiseSayings) {
+        boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
+
+        if (removed) System.out.println("%d번 명언을 삭제했습니다.".formatted(id));
+        else System.out.println("%d번 명언은 존재하지않습니다.".formatted(id));
+    }
 }

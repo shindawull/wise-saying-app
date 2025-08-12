@@ -39,7 +39,7 @@ public class App {
                 wiseSayingController.actionList(wiseSayings);
             } else if (cmd.startsWith("삭제?id=")) {
                 String id = cmd.substring(6);
-                actionDelete(Integer.parseInt(id));
+                wiseSayingController.actionDelete(Integer.parseInt(id), wiseSayings);
             } else if (cmd.startsWith("수정?id=")) {
                 String id = cmd.substring(6);
                 actionModify(Integer.parseInt(id));
@@ -76,12 +76,7 @@ public class App {
     }
 
 
-    private void actionDelete(int id) {
-        boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
 
-        if (removed) System.out.println("%d번 명언을 삭제했습니다.".formatted(id));
-        else System.out.println("%d번 명언은 존재하지않습니다.".formatted(id));
-    }
 
     private void makeSampleData() {
         addWiseSaying("나의 죽음을 적들에게 알리지 마라.", "이순신장군");
