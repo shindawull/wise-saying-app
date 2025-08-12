@@ -1,20 +1,21 @@
 package com.dawull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     // 변수 선언
-    private Scanner scanner;
+    private final Scanner scanner;
     private int lastId;
-    private WiseSaying[] wiseSayings;
+    private final List<WiseSaying> wiseSayings;
     private int wiseSayingsSize;
 
     // 변수 초기화
     public App() {
         scanner = new Scanner(System.in);
         lastId = 0;
-        wiseSayings = new WiseSaying[100];
-        wiseSayingsSize = 0;
+        wiseSayings = new ArrayList<>();
     }
 
     public void run() {
@@ -46,8 +47,9 @@ public class App {
 
         WiseSaying wiseSaying = new WiseSaying(id, content, author);
 
-        wiseSayings[wiseSayingsSize] = wiseSaying;
-        wiseSayingsSize++;
+        wiseSayings.add(wiseSaying);
+
+        System.out.println("wiseSayings = " + wiseSayings);
 
         return wiseSaying;
     }
@@ -61,7 +63,7 @@ public class App {
         WiseSaying wiseSaying = addWiseSaying(content, author);
 
         //System.out.println(Arrays.toString(wiseSayings));
-        System.out.println("%d번 명령이 등록되었습니다.".formatted(wiseSaying.id));
+        System.out.println("%d번 명령이 등록되었습니다.".formatted(wiseSaying.getId()));
 
     }
 
@@ -71,8 +73,7 @@ public class App {
         int i = 0;
         try {
             for (WiseSaying wiseSaying : wiseSayings) {
-                if (wiseSaying == null) break;
-                System.out.println("%d / %s / %s".formatted(wiseSaying.id, wiseSaying.content, wiseSaying.author));
+                System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
             }
         } catch (NullPointerException e) {
             System.out.println("등록된 명언이 없습니다.");
