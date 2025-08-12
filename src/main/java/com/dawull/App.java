@@ -2,7 +2,7 @@ package com.dawull;
 
 import java.util.Scanner;
 
-class App {
+public class App {
     // 변수 선언
     private Scanner scanner;
     private int lastId;
