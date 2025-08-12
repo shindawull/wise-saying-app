@@ -73,9 +73,14 @@ public class App {
     private void actionList() {
         System.out.println(" 번호 / 작가 / 명언 ");
         System.out.println("------------------------");
-        int i = 0;
+
         try {
+            /*int i = 0;
             for (WiseSaying wiseSaying : wiseSayings) {
+                System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
+            }*/
+            for (int i = wiseSayings.size() - 1; i >= 0; i--) {
+                WiseSaying wiseSaying = wiseSayings.get(i);
                 System.out.println("%d / %s / %s".formatted(wiseSaying.getId(), wiseSaying.getContent(), wiseSaying.getAuthor()));
             }
         } catch (NullPointerException e) {
