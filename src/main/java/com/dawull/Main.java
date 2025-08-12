@@ -27,6 +27,13 @@ class App {
     public void run() {
         System.out.println("== 명어 앱 ==");
 
+        int id = ++lastId;
+
+        WiseSaying wiseSaying = new WiseSaying(id, "나의 죽음을 적들에게 알리지말라", "이순신");
+
+        wiseSayings[wiseSayingsSize] = wiseSaying;
+        wiseSayingsSize++;
+
         while (true) {
             System.out.print("명령) ");
             String cmd = scanner.nextLine();
