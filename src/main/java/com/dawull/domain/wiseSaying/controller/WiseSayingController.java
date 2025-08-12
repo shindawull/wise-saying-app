@@ -15,7 +15,9 @@ public class WiseSayingController {
             }
         }
 
-    public void actionDelete(int id, List<WiseSaying> wiseSayings) {
+    public void actionDelete(String cmd, List<WiseSaying> wiseSayings) {
+        String idStr = cmd.substring(6);
+        int id = Integer.parseInt(idStr);
         boolean removed = wiseSayings.removeIf(wiseSaying -> wiseSaying.getId() == id);
 
         if (removed) System.out.println("%d번 명언을 삭제했습니다.".formatted(id));

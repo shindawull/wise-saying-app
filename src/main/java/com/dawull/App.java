@@ -38,8 +38,7 @@ public class App {
             } else if (cmd.equals("목록")) {
                 wiseSayingController.actionList(wiseSayings);
             } else if (cmd.startsWith("삭제?id=")) {
-                String id = cmd.substring(6);
-                wiseSayingController.actionDelete(Integer.parseInt(id), wiseSayings);
+                wiseSayingController.actionDelete(cmd, wiseSayings);
             } else if (cmd.startsWith("수정?id=")) {
                 String id = cmd.substring(6);
                 actionModify(Integer.parseInt(id));
