@@ -10,14 +10,13 @@ import java.util.Scanner;
 public class App {
     // 변수 선언
     private final Scanner scanner;
-    private int lastId;
+
     private final List<WiseSaying> wiseSayings;
     private WiseSayingController wiseSayingController;
 
     // 변수 초기화
     public App() {
         scanner = new Scanner(System.in);
-        lastId = 0;
         wiseSayings = new ArrayList<>();
         wiseSayingController = new WiseSayingController();
     }
@@ -25,7 +24,7 @@ public class App {
     public void run() {
         System.out.println("== 명어 앱 ==");
 
-        makeSampleData();
+        wiseSayingController.makeSampleData(wiseSayings);
 
         while (true) {
             System.out.print("명령) ");
@@ -34,45 +33,15 @@ public class App {
             if (cmd.equals("종료")) {
                 break;
             } else if (cmd.equals("등록")) {
-                actionAdd();
+                wiseSayingController.actionAdd(scanner, wiseSayings);
             } else if (cmd.equals("목록")) {
                 wiseSayingController.actionList(wiseSayings);
             } else if (cmd.startsWith("삭제?id=")) {
                 wiseSayingController.actionDelete(cmd, wiseSayings);
             } else if (cmd.startsWith("수정?id=")) {
-                wiseSayingController.actionModify(cmd, wiseSayings);
+                wiseSayingController.actionModify(scanner, cmd, wiseSayings);
             }
         }
         scanner.close();
     }
-
-    private void makeSampleData() {
-        addWiseSaying("나의 죽음을 적들에게 알리지 마라.", "이순신장군");
-        addWiseSaying("삶이 있는 한 희망은 있다.", "키케로");
-    }
-
-    private WiseSaying addWiseSaying(String content, String author) {
-        int id = ++lastId;
-
-        WiseSaying wiseSaying = new WiseSaying(id, content, author);
-
-        wiseSayings.add(wiseSaying);
-
-        return wiseSaying;
-    }
-
-    private void actionAdd() {
-        System.out.print("명언 : ");
-        String content = scanner.nextLine();
-        System.out.print("작가 : ");
-        String author = scanner.nextLine();
-
-        WiseSaying wiseSaying = addWiseSaying(content, author);
-
-        //System.out.println(Arrays.toString(wiseSayings));
-        System.out.println("%d번 명령이 등록되었습니다.".formatted(wiseSaying.getId()));
-
-    }
-
-
 }

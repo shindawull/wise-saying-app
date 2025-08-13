@@ -7,10 +7,37 @@ import java.util.Scanner;
 
 
 public class WiseSayingController {
-    Scanner scanner;
+    private int lastId;
 
     public WiseSayingController(){
-        scanner = new Scanner(System.in);
+
+    }
+
+    public void makeSampleData(List<WiseSaying> wiseSayings) {
+        addWiseSaying(wiseSayings,"나의 죽음을 적들에게 알리지 마라.", "이순신장군");
+        addWiseSaying(wiseSayings,"삶이 있는 한 희망은 있다.", "키케로");
+    }
+
+    public WiseSaying addWiseSaying(List<WiseSaying> wiseSayings, String content, String author) {
+        int id = ++lastId;
+
+        WiseSaying wiseSaying = new WiseSaying(id, content, author);
+
+        wiseSayings.add(wiseSaying);
+
+        return wiseSaying;
+    }
+
+    public void actionAdd(Scanner scanner, List<WiseSaying> wiseSayings) {
+        System.out.print("명언 : ");
+        String content = scanner.nextLine();
+        System.out.print("작가 : ");
+        String author = scanner.nextLine();
+
+        WiseSaying wiseSaying = addWiseSaying(wiseSayings, content, author);
+
+        //System.out.println(Arrays.toString(wiseSayings));
+        System.out.println("%d번 명령이 등록되었습니다.".formatted(wiseSaying.getId()));
     }
 
     public void actionList(List<WiseSaying> wiseSayings) {
@@ -31,7 +58,7 @@ public class WiseSayingController {
         else System.out.println("%d번 명언은 존재하지않습니다.".formatted(id));
     }
 
-    public void actionModify(String cmd, List<WiseSaying> wiseSayings) {
+    public void actionModify(Scanner scanner, String cmd, List<WiseSaying> wiseSayings) {
         String idStr = cmd.substring(6);
         int id = Integer.parseInt(idStr);
         WiseSaying foundWaseSaying = null;
