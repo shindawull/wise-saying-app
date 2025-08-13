@@ -1,5 +1,6 @@
 package com.dawull;
 
+import com.dawull.domain.system.controller.SystemController;
 import com.dawull.domain.wiseSaying.controller.WiseSayingController;
 
 import java.util.Scanner;
@@ -7,10 +8,13 @@ import java.util.Scanner;
 public class App {
     // 변수 선언
     private final Scanner scanner;
-    private WiseSayingController wiseSayingController;
+    private final WiseSayingController wiseSayingController;
+    private final SystemController systemController;
+
 
     // 변수 초기화
     public App() {
+        systemController = new SystemController();
         scanner = new Scanner(System.in);
         wiseSayingController = new WiseSayingController(scanner);
     }
@@ -25,6 +29,7 @@ public class App {
             String cmd = scanner.nextLine();
 
             if (cmd.equals("종료")) {
+                systemController.actionExit();
                 break;
             } else if (cmd.equals("등록")) {
                 wiseSayingController.actionAdd();
