@@ -12,7 +12,7 @@ public class App {
     // 변수 초기화
     public App() {
         scanner = new Scanner(System.in);
-        wiseSayingController = new WiseSayingController();
+        wiseSayingController = new WiseSayingController(scanner);
     }
 
     public void run() {
@@ -27,13 +27,13 @@ public class App {
             if (cmd.equals("종료")) {
                 break;
             } else if (cmd.equals("등록")) {
-                wiseSayingController.actionAdd(scanner);
+                wiseSayingController.actionAdd();
             } else if (cmd.equals("목록")) {
                 wiseSayingController.actionList();
             } else if (cmd.startsWith("삭제?id=")) {
                 wiseSayingController.actionDelete(cmd);
             } else if (cmd.startsWith("수정?id=")) {
-                wiseSayingController.actionModify(scanner, cmd);
+                wiseSayingController.actionModify(cmd);
             }
         }
         scanner.close();

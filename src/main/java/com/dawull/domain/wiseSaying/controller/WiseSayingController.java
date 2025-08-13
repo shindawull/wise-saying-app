@@ -8,12 +8,14 @@ import java.util.Scanner;
 
 
 public class WiseSayingController {
+    private final Scanner scanner;
     private int lastId;
     private final List<WiseSaying> wiseSayings;
 
-    public WiseSayingController(){
-        lastId = 0;
-        wiseSayings = new ArrayList<>();
+    public WiseSayingController(Scanner scanner){
+        this.scanner = scanner;
+        this.wiseSayings = new ArrayList<>();
+        this.lastId = 0;
     }
 
     public void makeSampleData() {
@@ -31,7 +33,7 @@ public class WiseSayingController {
         return wiseSaying;
     }
 
-    public void actionAdd(Scanner scanner) {
+    public void actionAdd() {
         System.out.print("명언 : ");
         String content = scanner.nextLine();
         System.out.print("작가 : ");
@@ -61,7 +63,7 @@ public class WiseSayingController {
         else System.out.println("%d번 명언은 존재하지않습니다.".formatted(id));
     }
 
-    public void actionModify(Scanner scanner, String cmd) {
+    public void actionModify(String cmd) {
         String idStr = cmd.substring(6);
         int id = Integer.parseInt(idStr);
         WiseSaying foundWaseSaying = null;
