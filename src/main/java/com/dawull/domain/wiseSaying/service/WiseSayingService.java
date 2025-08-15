@@ -1,16 +1,17 @@
 package com.dawull.domain.wiseSaying.service;
 
 import com.dawull.domain.wiseSaying.entity.WiseSaying;
+import com.dawull.domain.wiseSaying.repository.WiseSayingMemoryRepository;
 import com.dawull.domain.wiseSaying.repository.WiseSayingRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class WiseSayingService {
+public class WiseSayingService{
     private final WiseSayingRepository wiseSayingRepository;
 
-    public WiseSayingService() {
-        this.wiseSayingRepository = new WiseSayingRepository();
+    public WiseSayingService()  {
+        this.wiseSayingRepository = new WiseSayingMemoryRepository();
     }
 
     public WiseSaying add(String content, String author) {
